@@ -22,7 +22,7 @@
             v-on:click="addProgram" style="width: 120px; margin-left: 0px">添加方案</el-button>
         </div>
         <el-table ref="testTable" :data="programData"
-          style="width:1350px; margin:15px auto 25px auto"
+          style="width:1400px; margin:15px auto 25px auto"
           border
           :default-sort = "{prop: 'id', order: 'ascending'}">
           <el-table-column prop="id" label="Id" width="60px" align="center"
@@ -50,6 +50,8 @@
               <div>
                 <el-button size="small" type="success" id='program-operate-btn'
                   @click="getDetail(scope.$index, scope.row)">查看</el-button>
+                <el-button size="small" type="success" id='program-operate-btn'
+                  @click="analysis(scope.$index, scope.row)">分析</el-button>
                 <el-button size="small" type="warning" id='program-operate-btn'
                   @click="editProgram(scope.$index, scope.row)">编辑</el-button>
               </div>
@@ -150,26 +152,49 @@ export default {
         cancelButtonText: '取消',
         type: 'info'
       }).then(() => {
-        let that = this
-        let params = {
-          data: row.pname
-        }
-        that.$axios.post('/startProgram', params)
-          .then((response) => {
-            let data = response.data
-            console.log(data)
-            // if (data.resCode === 0) {
-            //   that.errorMessage(data.resStr)
-            // } else if (data.resCode === 1) {
-            //   that.successMessage(data.resStr)
-            //   that.doSearchProgram()
-            // }
-          })
-          .catch((e) => {
-            console.log(e)
-          })
+        this.$prompt('请输入推文数量', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          inputPattern: /\d+/,
+          inputErrorMessage: '推文数量格式不正确'
+        }).then(({ value }) => {
+          let that = this
+          let params = {
+            data: row.pname,
+            num: value
+          }
+          that.$axios.post('/startProgram', params)
+            .then((response) => {
+              let data = response.data
+              if (data.resCode === 0) {
+                that.errorMessage(data.resStr)
+              } else if (data.resCode === 1) {
+                that.successMessage(data.resStr)
+                // that.doSearchProgram()
+                location.reload()
+              }
+            }).catch((e) => {
+              console.log(e)
+            })
+        }).catch(() => {
+        })
       }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消启动'
+        })
       })
+    },
+    analysis (index, row) {
+      if (row.status === '无数据') {
+        this.errorMessage('该方案暂时没有分析数据！')
+      } else {
+        let pname = row.pname
+        this.$store.commit('storeEventAnalysisPname', {
+          pname: pname
+        })
+        this.$router.push('/main/EventVisible')
+      }
     },
     handleSizeChange (val) {
       this.pageSize = val

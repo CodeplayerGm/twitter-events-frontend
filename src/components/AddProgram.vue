@@ -153,7 +153,7 @@
 </template>
 
 <script>
-import {isAlnum, isNum} from '../util/util.js'
+import {isNum} from '../util/util.js'
 
 export default {
   name: 'MonitorProgram',
@@ -251,7 +251,8 @@ export default {
         return
       }
       // 数据库名称检查
-      if (form.dbName === '' || !isAlnum(form.dbName)) {
+      let pattern = /^\w+$/
+      if (form.dbName === '' || !pattern.test(form.dbName)) {
         this.errorMessage('数据库名称不合法，请检查！')
         return
       }

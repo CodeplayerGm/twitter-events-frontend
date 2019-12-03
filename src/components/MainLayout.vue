@@ -18,11 +18,11 @@
         <i class="el-icon-location"></i>
         <span slot="title">监控方案</span>
       </el-menu-item>
-      <el-menu-item index="3" id='menuItem'>
+      <!-- <el-menu-item index="EventVisible" id='menuItem'>
         <i class="el-icon-menu"></i>
         <span slot="title">事件分析</span>
-      </el-menu-item>
-      <el-menu-item index="4"  id='menuItem'>
+      </el-menu-item> -->
+      <el-menu-item index="SystemConfig"  id='menuItem'>
         <i class="el-icon-setting"></i>
         <span slot="title">设置</span>
       </el-menu-item>
@@ -45,18 +45,12 @@ export default {
   },
   methods: {
     shiftLeftSide() {
-      this.isCollapse = !this.isCollapse
-      if (this.isCollapse) {
-        document.getElementById('header-caption').style.width = '50px'
-        // document.getElementById('content').style.width =
-        //   (parseInt(document.getElementById('content').style.width.slice(0, -2)) + 150) + 'px'
-        // alert(document.getElementById('content').style.width)
-      } else {
-        document.getElementById('header-caption').style.width = '200px'
-        // document.getElementById('content').style.width =
-        //   (parseInt(document.getElementById('content').style.width.slice(0, -2)) - 150) + 'px'
-        // alert(document.getElementById('content').style.width)
-      }
+      // this.isCollapse = !this.isCollapse
+      // if (this.isCollapse) {
+      //   document.getElementById('header-caption').style.width = '50px'
+      // } else {
+      //   document.getElementById('header-caption').style.width = '180px'
+      // }
     }
   }
 }
@@ -79,7 +73,7 @@ export default {
     background:#4F9D9D;
   }
   #header-caption {
-    width: 200px;
+    width: 160px;
     height: 50px;
     line-height: 50px;
     float: left;
@@ -102,7 +96,7 @@ export default {
     background:#336666;
   }
   .el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
+    width: 160px;
     min-height: 880px;
     margin: 0 auto;
     background:#E0E0E0;

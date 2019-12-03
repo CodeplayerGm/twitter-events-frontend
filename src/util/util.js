@@ -32,3 +32,21 @@ export function isNum (str) {
     return true;
   }
 }
+
+// 判断js字典是否为空
+export function isEmptyDic(obj) {
+  for (let key in obj) {
+    return false;
+  }
+  return true;
+}
+
+// 保留两位小数
+export function toDecimal(x) { 
+  let f = parseFloat(x); 
+  if (isNaN(f)) { 
+    return; 
+  } 
+  f = Math.round(x*100)/100; 
+  return f; 
+}

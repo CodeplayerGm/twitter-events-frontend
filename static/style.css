@@ -1,0 +1,82 @@
+.cbp_tmtimeline {
+	margin: 30px 0 0 0;
+	padding: 0;
+	list-style: none;
+	position: relative;
+} 
+
+/* The line */
+.cbp_tmtimeline:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 10px;
+	background: #afdcf8;
+	left: 20%;
+	margin-left: -10px;
+}
+
+.cbp_tmtimeline > li {
+	position: relative;
+}
+
+/* The date/time */
+.cbp_tmtimeline > li .cbp_tmtime {
+	display: block;
+	width: 16%;
+	height: 45px;
+	line-height: 45px;
+	position: absolute;
+}
+
+#timeTrack-date {
+	font-size: 16px;
+	color: #bdd0db;
+	display: block;
+	text-align: right;
+}
+
+#timeTrack-time {
+	font-size: 20px;
+	color: #3594cb;
+	display: block;
+	text-align: right;
+}
+
+/* Right content */
+.cbp_tmtimeline > li .cbp_tmlabel {
+	margin: 0 0 15px 25%;
+	background: #3594cb;
+	color: #fff;
+	padding: 2em;
+	font-size: 1.2em;
+	font-weight: 300;
+	line-height: 1.4;
+	position: relative;
+	border-radius: 5px;
+}
+
+/* The icons */
+.cbp_tmtimeline > li .cbp_tmicon {
+	width: 40px;
+	height: 40px;
+	font-family: 'ecoico';
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	font-size: 1.4em;
+	line-height: 40px;
+	-webkit-font-smoothing: antialiased;
+	position: absolute;
+	color: #fff;
+	background: #46a4da;
+	border-radius: 50%;
+	box-shadow: 0 0 0 8px #afdcf8;
+	text-align: center;
+	left: 20%;
+	top: 0;
+	margin: 0 0 0 -25px;
+}
+
